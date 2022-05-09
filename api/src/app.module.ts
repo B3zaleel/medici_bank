@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppController } from './controllers/app.controller';
 import { AppService } from './app.service';
 import { join } from 'path';
 import { DecodeAuthToken } from './utils/auth_helper';
+import { UserModule } from './modules/user.module';
 
 @Module({
   imports: [
+    MongooseModule.forRoot(process.env.MONGO_DB_URI),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql', './**/*.gql'],
@@ -39,6 +42,7 @@ import { DecodeAuthToken } from './utils/auth_helper';
         };
       },
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
