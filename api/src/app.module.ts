@@ -5,8 +5,10 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppController } from './controllers/app.controller';
 import { AppService } from './app.service';
 import { join } from 'path';
+import 'dotenv/config';
 import { DecodeAuthToken } from './utils/auth_helper';
 import { UserModule } from './modules/user.module';
+import { AuthModule } from './modules/auth.module';
 
 @Module({
   imports: [
@@ -22,7 +24,7 @@ import { UserModule } from './modules/user.module';
         const authTokenParts = (req.headers.authorization || '')
           .trim()
           .split(' ');
-        if (authTokenParts.length() == 2 && authTokenParts[0] == 'Bearer') {
+        if (authTokenParts.length == 2 && authTokenParts[0] == 'Bearer') {
           const token = DecodeAuthToken(authTokenParts[1]);
           if (!token) {
             return {
@@ -43,6 +45,7 @@ import { UserModule } from './modules/user.module';
       },
     }),
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
