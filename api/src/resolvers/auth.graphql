@@ -1,23 +1,16 @@
-type Mutation {
-    signUp(name: String!, phone: String!, password: String): AuthResult
-    signIn(phone: String!, password: String!): AuthResult
-    removeAccount(phone: String!, password: String!): ActionResult
-}
-
-union AuthResult = AuthPayload | ActionResult
-
 type AuthPayload {
     bearerToken: String!
     user: User!
 }
 
-type User {
-    name: String!
-    phone: String!
-    balance: Int!
-}
-
 type ActionResult {
     success: Boolean!
     message: String!
+}
+
+union AuthResult = AuthPayload | ActionResult
+
+type Mutation {
+    signUp(name: String!, phone: String!, password: String): AuthResult
+    signIn(phone: String!, password: String!): AuthResult
 }
