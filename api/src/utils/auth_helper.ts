@@ -21,6 +21,7 @@ export function DecodeAuthToken(token: string): Payload {
  * Encodes claims for user authentication.
  */
 export function EncodeAuthClaims(userId: string): string {
-  const exp = Date.now() + 1000 * 60 * 60 * 24 * 30;
-  return sign({ userId, exp }, process.env.JWT_SECRET);
+  const iat = Date.now();
+  const exp = iat + 1000 * 60 * 60 * 24 * 30;
+  return sign({ userId, iat, exp }, process.env.JWT_SECRET);
 }
