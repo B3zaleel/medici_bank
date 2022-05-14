@@ -68,7 +68,7 @@ export class UserResolver {
 }
 
 @Resolver('UserResult')
-export class TransactionResultResolver {
+export class UserResultResolver {
   @ResolveField()
   __resolveType(value) {
     if (value.name) {
