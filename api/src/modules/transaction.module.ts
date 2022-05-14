@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import {
   TransactionResolver,
@@ -17,7 +17,7 @@ import { UserService } from 'src/services/user.service';
         schema: TransactionSchema,
       },
     ]),
-    UserModule,
+    forwardRef(() => UserModule),
   ],
   providers: [
     UserService,
