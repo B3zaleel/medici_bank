@@ -4,7 +4,6 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppController } from './controllers/app.controller';
 import { AppService } from './app.service';
-import { join } from 'path';
 import 'dotenv/config';
 import { DecodeAuthToken } from './utils/auth_helper';
 import { UserModule } from './modules/user.module';
@@ -18,7 +17,7 @@ import { TransactionModule } from './modules/transaction.module';
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql', './**/*.gql'],
       definitions: {
-        path: join(process.cwd(), './types/graphql.ts'),
+        path: 'src/types/graphql.ts',
         outputAs: 'class',
       },
       context: ({ req }) => {
