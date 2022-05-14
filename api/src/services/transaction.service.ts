@@ -34,7 +34,7 @@ export class TransactionService {
       .exec();
     let addTransaction = before.length > 0;
 
-    for (const transaction in transactions) {
+    for (const transaction of transactions) {
       if (i == limit) {
         break;
       }
