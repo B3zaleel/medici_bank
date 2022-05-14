@@ -3,7 +3,6 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import * as mongoose from 'mongoose';
 import { AppModule } from '../../src/app.module';
-import { gql } from 'apollo-server-express';
 import { User, UserSchema } from '../../src/schemas/user.schema';
 
 describe('UserResolver (e2e)', () => {
