@@ -22,14 +22,14 @@ export class UserService {
   }
 
   async getUserById(userId: string): Promise<User> {
-    return this.userModel.findOne({ id: userId });
+    return this.userModel.findOne({ id: userId }).exec();
   }
 
   async getUserByPhone(phone: string): Promise<User> {
-    return this.userModel.findOne({ phone });
+    return this.userModel.findOne({ phone }).exec();
   }
 
   async removeUser(userId: string): Promise<void> {
-    this.userModel.deleteOne({ id: userId });
+    this.userModel.deleteOne({ id: userId }).exec();
   }
 }
