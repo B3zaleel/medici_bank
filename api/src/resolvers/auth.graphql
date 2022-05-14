@@ -11,6 +11,6 @@ type ActionResult {
 union AuthResult = AuthPayload | ActionResult
 
 type Mutation {
-    signUp(name: String!, phone: String!, password: String): AuthResult
+    signUp(name: String!, phone: String!, password: String!): AuthResult
     signIn(phone: String!, password: String!): AuthResult
 }

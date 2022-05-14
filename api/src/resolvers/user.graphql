@@ -7,7 +7,7 @@ type User {
 union UserResult = User | ActionResult
 
 type Query {
-  getUser(): UserResult
+  getUser: UserResult
 }
 
 type Mutation {

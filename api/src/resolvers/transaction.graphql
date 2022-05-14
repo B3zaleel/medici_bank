@@ -15,7 +15,7 @@ enum TransactionType {
 union TransactionResult = Transaction | ActionResult
 
 type Query {
-  transactions(count: Int!, before: String): [TransactionResult!]
+  transactions(count: Int!, before: String!): [TransactionResult!]
 }
 
 type Mutation {
