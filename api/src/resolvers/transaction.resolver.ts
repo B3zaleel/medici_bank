@@ -103,7 +103,7 @@ export class TransactionResolver {
       id: v4(),
       userId: userId,
       info: ``,
-      type: 'Debit',
+      type: 'Draw',
       createdOn: new Date(Date.now()),
       amount: amount,
       balance: user.balance - amount,
