@@ -18,5 +18,11 @@
       "lines": 75
     }
   },
-  "coverageDirectory": "./coverage"
+  "coverageDirectory": "./coverage",
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/src/dto/",
+    "<rootDir>/src/schemas/",
+    "<rootDir>/src/types/graphql.ts",
+    "<rootDir>/src/main.ts"
+  ]
 }
