@@ -39,7 +39,8 @@ import { TransactionModule } from './modules/transaction.module';
           }
           const isExpired = token.exp <= Date.now();
           const userId = isExpired ? null : token.userId;
-          return { userId, isExpired, errorMessage: '' };
+          const errorMessage = isExpired ? 'Token has expired' : '';
+          return { userId, isExpired, errorMessage };
         }
         return {
           userId: '',
