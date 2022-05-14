@@ -10,7 +10,7 @@ import { argon2i } from 'argon2-ffi';
 import { UserService } from 'src/services/user.service';
 import { TransactionService } from 'src/services/transaction.service';
 
-@Resolver('Transaction')
+@Resolver('User')
 export class UserResolver {
   constructor(
     private userService: UserService,
@@ -24,14 +24,14 @@ export class UserResolver {
     @Context('errorMessage') errorMessage: string,
   ) {
     if (isExpired) {
-      return [
-        {
-          success: false,
-          message: errorMessage,
-        },
-      ];
+      return {
+        success: false,
+        message: errorMessage,
+      };
     }
-    return this.userService.getUserById(userId);
+    const user = await this.userService.getUserById(userId);
+    const { name, phone, balance } = user;
+    return { name, phone, balance };
   }
 
   @Mutation()
@@ -43,12 +43,10 @@ export class UserResolver {
     @Context('errorMessage') errorMessage: string,
   ) {
     if (isExpired) {
-      return [
-        {
-          success: false,
-          message: errorMessage,
-        },
-      ];
+      return {
+        success: false,
+        message: errorMessage,
+      };
     }
     const user = await this.userService.getUserById(userId);
     const isValid = await argon2i.verify(user.pwdHash, password);
