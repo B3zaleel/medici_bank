@@ -12,7 +12,11 @@ import { TransactionModule } from './modules/transaction.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_DB_URI),
+    MongooseModule.forRoot(
+      process.env.npm_lifecycle_event.startsWith('test')
+        ? process.env.MONGO_DB_URI_TEST
+        : process.env.MONGO_DB_URI,
+    ),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql', './**/*.gql'],
