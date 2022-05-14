@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { Module } from '@nestjs/common';
 import { AuthResolver, AuthResultResolver } from 'src/resolvers/auth.resolver';
 import { UserModule } from './user.module';
