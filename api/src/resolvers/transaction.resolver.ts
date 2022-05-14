@@ -48,20 +48,16 @@ export class TransactionResolver {
     @Context('errorMessage') errorMessage: string,
   ) {
     if (isExpired) {
-      return [
-        {
-          success: false,
-          message: errorMessage,
-        },
-      ];
+      return {
+        success: false,
+        message: errorMessage,
+      };
     }
     if (amount <= MIN_AMOUNT) {
-      return [
-        {
-          success: false,
-          message: `Amount must be greater than ${MIN_AMOUNT}.`,
-        },
-      ];
+      return {
+        success: false,
+        message: `Amount must be greater than ${MIN_AMOUNT}.`,
+      };
     }
     const user = await this.userService.getUserById(userId);
     const transaction: CreateTransactionDto = {
@@ -85,35 +81,29 @@ export class TransactionResolver {
     @Context('errorMessage') errorMessage: string,
   ) {
     if (isExpired) {
-      return [
-        {
-          success: false,
-          message: errorMessage,
-        },
-      ];
+      return {
+        success: false,
+        message: errorMessage,
+      };
     }
     if (amount <= MIN_AMOUNT) {
-      return [
-        {
-          success: false,
-          message: `Amount must be greater than ${MIN_AMOUNT}.`,
-        },
-      ];
+      return {
+        success: false,
+        message: `Amount must be greater than ${MIN_AMOUNT}.`,
+      };
     }
     const user = await this.userService.getUserById(userId);
     if (user.balance - amount < 0) {
-      return [
-        {
-          success: false,
-          message: 'Insufficient funds.',
-        },
-      ];
+      return {
+        success: false,
+        message: 'Insufficient funds.',
+      };
     }
     const transaction: CreateTransactionDto = {
       id: v4(),
       userId: userId,
       info: ``,
-      type: 'Credit',
+      type: 'Debit',
       createdOn: new Date(Date.now()),
       amount: amount,
       balance: user.balance - amount,
@@ -131,38 +121,30 @@ export class TransactionResolver {
     @Context('errorMessage') errorMessage: string,
   ) {
     if (isExpired) {
-      return [
-        {
-          success: false,
-          message: errorMessage,
-        },
-      ];
+      return {
+        success: false,
+        message: errorMessage,
+      };
     }
     if (amount <= MIN_AMOUNT) {
-      return [
-        {
-          success: false,
-          message: `Amount must be greater than ${MIN_AMOUNT}.`,
-        },
-      ];
+      return {
+        success: false,
+        message: `Amount must be greater than ${MIN_AMOUNT}.`,
+      };
     }
     const sender = await this.userService.getUserById(userId);
     if (sender.balance - amount < 0) {
-      return [
-        {
-          success: false,
-          message: 'Insufficient funds.',
-        },
-      ];
+      return {
+        success: false,
+        message: 'Insufficient funds.',
+      };
     }
     const receiver = await this.userService.getUserByPhone(account);
     if (!receiver) {
-      return [
-        {
-          success: false,
-          message: 'Receiving account not found.',
-        },
-      ];
+      return {
+        success: false,
+        message: 'Receiving account not found.',
+      };
     }
     const transactionId = v4();
     const creationDate = new Date(Date.now());
