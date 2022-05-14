@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import { Module, forwardRef } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserService } from '../services/user.service';
