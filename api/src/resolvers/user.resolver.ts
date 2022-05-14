@@ -72,9 +72,6 @@ export class UserResultResolver {
     if (value.name) {
       return 'User';
     }
-    if (value.message) {
-      return 'ActionResult';
-    }
-    return null;
+    return 'ActionResult';
   }
 }

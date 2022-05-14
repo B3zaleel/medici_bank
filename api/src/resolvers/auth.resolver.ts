@@ -75,9 +75,6 @@ export class AuthResultResolver {
     if (value.user) {
       return 'AuthPayload';
     }
-    if (value.message) {
-      return 'ActionResult';
-    }
-    return null;
+    return 'ActionResult';
   }
 }

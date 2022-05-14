@@ -204,9 +204,6 @@ export class TransactionResultResolver {
     if (value.amount) {
       return 'Transaction';
     }
-    if (value.message) {
-      return 'ActionResult';
-    }
-    return null;
+    return 'ActionResult';
   }
 }
