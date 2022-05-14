@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export class CreateTransactionDto {
   /**
    * The id of the transaction.

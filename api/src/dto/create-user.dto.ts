@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export class CreateUserDto {
   /**
    * The unque id of the user.

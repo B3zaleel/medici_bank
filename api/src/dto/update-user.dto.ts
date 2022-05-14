@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export class UpdateUserDto {
   /**
    * The name of the user.
