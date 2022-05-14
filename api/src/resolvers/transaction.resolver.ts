@@ -7,10 +7,10 @@ import {
   Context,
 } from '@nestjs/graphql';
 import { v4 } from 'uuid';
-import { UserService } from 'src/services/user.service';
-import { TransactionService } from 'src/services/transaction.service';
-import { CreateTransactionDto } from 'src/dto/create-transaction.dto';
-import { UpdateUserDto } from 'src/dto/update-user.dto';
+import { UserService } from '../services/user.service';
+import { TransactionService } from '../services/transaction.service';
+import { CreateTransactionDto } from '../dto/create-transaction.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
 
 const MIN_AMOUNT = 0;
 

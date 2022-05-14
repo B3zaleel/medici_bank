@@ -7,8 +7,8 @@ import {
   Context,
 } from '@nestjs/graphql';
 import { argon2i } from 'argon2-ffi';
-import { UserService } from 'src/services/user.service';
-import { TransactionService } from 'src/services/transaction.service';
+import { UserService } from '../services/user.service';
+import { TransactionService } from '../services/transaction.service';
 
 @Resolver('User')
 export class UserResolver {

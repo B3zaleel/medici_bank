@@ -4,11 +4,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {
   TransactionResolver,
   TransactionResultResolver,
-} from 'src/resolvers/transaction.resolver';
-import { TransactionService } from 'src/services/transaction.service';
-import { Transaction, TransactionSchema } from 'src/schemas/transaction.schema';
+} from '../resolvers/transaction.resolver';
+import { TransactionService } from '../services/transaction.service';
+import { Transaction, TransactionSchema } from '../schemas/transaction.schema';
 import { UserModule } from './user.module';
-import { UserService } from 'src/services/user.service';
+import { UserService } from '../services/user.service';
 
 @Module({
   imports: [

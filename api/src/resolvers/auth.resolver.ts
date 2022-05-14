@@ -2,9 +2,9 @@ import { Resolver, Mutation, Args, ResolveField } from '@nestjs/graphql';
 import { argon2i } from 'argon2-ffi';
 import { v4 } from 'uuid';
 import 'dotenv/config';
-import { UserService } from 'src/services/user.service';
-import { CreateUserDto } from 'src/dto/create-user.dto';
-import { EncodeAuthClaims } from 'src/utils/auth_helper';
+import { UserService } from '../services/user.service';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { EncodeAuthClaims } from '../utils/auth_helper';
 
 @Resolver('Auth')
 export class AuthResolver {

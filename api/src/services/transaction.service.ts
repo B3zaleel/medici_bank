@@ -4,8 +4,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import {
   Transaction,
   TransactionDocument,
-} from 'src/schemas/transaction.schema';
-import { CreateTransactionDto } from 'src/dto/create-transaction.dto';
+} from '../schemas/transaction.schema';
+import { CreateTransactionDto } from '../dto/create-transaction.dto';
 
 @Injectable()
 export class TransactionService {

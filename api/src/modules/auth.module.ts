@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 import { Module } from '@nestjs/common';
-import { AuthResolver, AuthResultResolver } from 'src/resolvers/auth.resolver';
+import { AuthResolver, AuthResultResolver } from '../resolvers/auth.resolver';
 import { UserModule } from './user.module';
-import { UserService } from 'src/services/user.service';
+import { UserService } from '../services/user.service';
 
 @Module({
   imports: [UserModule],

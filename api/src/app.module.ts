@@ -18,7 +18,7 @@ import { TransactionModule } from './modules/transaction.module';
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql', './**/*.gql'],
       definitions: {
-        path: join(process.cwd(), 'src/types/graphql.ts'),
+        path: join(process.cwd(), './types/graphql.ts'),
         outputAs: 'class',
       },
       context: ({ req }) => {
