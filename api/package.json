@@ -18,7 +18,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --coverage --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/apollo": "^10.0.11",
@@ -29,15 +29,13 @@
     "@nestjs/platform-express": "^8.0.0",
     "apollo-server-express": "^3.7.0",
     "argon2-ffi": "^2.0.0",
-    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
     "graphql": "^16.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0",
-    "uuidv4": "^6.2.13"
+    "rxjs": "^7.2.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
