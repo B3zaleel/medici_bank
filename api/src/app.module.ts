@@ -9,6 +9,7 @@ import 'dotenv/config';
 import { DecodeAuthToken } from './utils/auth_helper';
 import { UserModule } from './modules/user.module';
 import { AuthModule } from './modules/auth.module';
+import { TransactionModule } from './modules/transaction.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { AuthModule } from './modules/auth.module';
     }),
     UserModule,
     AuthModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
