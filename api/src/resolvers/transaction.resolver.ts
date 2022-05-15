@@ -69,8 +69,16 @@ export class TransactionResolver {
       amount: amount,
       balance: user.balance + amount,
     };
-    this.userService.updateUser(userId, { balance: transaction.balance });
-    return this.transactionService.addTransaction(transaction);
+    await this.userService.updateUser(userId, { balance: transaction.balance });
+    await this.transactionService.addTransaction(transaction);
+    return {
+      id: transaction.id,
+      type: transaction.type,
+      createdOn: transaction.createdOn.toUTCString(),
+      info: transaction.info,
+      amount: transaction.amount,
+      balance: transaction.balance,
+    };
   }
 
   @Mutation()
@@ -108,8 +116,16 @@ export class TransactionResolver {
       amount: amount,
       balance: user.balance - amount,
     };
-    this.userService.updateUser(userId, { balance: transaction.balance });
-    return this.transactionService.addTransaction(transaction);
+    await this.userService.updateUser(userId, { balance: transaction.balance });
+    await this.transactionService.addTransaction(transaction);
+    return {
+      id: transaction.id,
+      type: transaction.type,
+      createdOn: transaction.createdOn.toUTCString(),
+      info: transaction.info,
+      amount: transaction.amount,
+      balance: transaction.balance,
+    };
   }
 
   @Mutation()
@@ -175,7 +191,15 @@ export class TransactionResolver {
     this.userService.updateUser(sender.id, senderUpdateDto);
     this.userService.updateUser(receiver.id, receiverUpdateDto);
     this.transactionService.addTransaction(receiverTransaction);
-    return this.transactionService.addTransaction(senderTransaction);
+    this.transactionService.addTransaction(senderTransaction);
+    return {
+      id: senderTransaction.id,
+      type: senderTransaction.type,
+      createdOn: senderTransaction.createdOn.toUTCString(),
+      info: senderTransaction.info,
+      amount: senderTransaction.amount,
+      balance: senderTransaction.balance,
+    };
   }
 }
 
