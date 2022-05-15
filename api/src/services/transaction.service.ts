@@ -32,14 +32,21 @@ export class TransactionService {
       .find({ userId })
       .sort({ createdOn: 'desc' })
       .exec();
-    let addTransaction = before.length > 0;
+    let addTransaction = before.trim().length == 0;
 
     for (const transaction of transactions) {
       if (i == limit) {
         break;
       }
       if (addTransaction) {
-        result.push(transaction);
+        result.push({
+          id: transaction.id,
+          type: transaction.type,
+          createdOn: transaction.createdOn.toUTCString(),
+          info: transaction.info,
+          amount: transaction.amount,
+          balance: transaction.balance,
+        });
         i++;
       }
       if (transaction.id == before) {
