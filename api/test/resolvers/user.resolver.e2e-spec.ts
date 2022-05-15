@@ -8,13 +8,13 @@ import { User, UserSchema } from '../../src/schemas/user.schema';
 describe('UserResolver (e2e)', () => {
   let app: INestApplication;
   const sampleUser = {
-    name: 'Gon Freecs',
-    phone: '02222222222',
+    name: 'Monkey D. Luffy',
+    phone: '07855412289',
     password: 'password123',
   };
   const falseUser = {
     name: 'Ging Freecs',
-    phone: '05555555555',
+    phone: '05677895213',
     password: 'word123',
   };
   const dbURI = process.env.npm_lifecycle_event.startsWith('test')
@@ -27,7 +27,7 @@ describe('UserResolver (e2e)', () => {
     }).compile();
     await mongoose.connect(dbURI);
     const UserModel = mongoose.model(User.name, UserSchema);
-    await UserModel.deleteMany().exec();
+    await UserModel.deleteMany({ phone: sampleUser.phone }).exec();
     app = moduleFixture.createNestApplication();
     await app.init();
   });

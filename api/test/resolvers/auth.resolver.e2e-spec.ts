@@ -22,7 +22,7 @@ describe('AuthResolver (e2e)', () => {
     }).compile();
     await mongoose.connect(dbURI);
     const UserModel = mongoose.model(User.name, UserSchema);
-    await UserModel.deleteMany().exec();
+    await UserModel.deleteMany({ phone: sampleUser.phone }).exec();
     app = moduleFixture.createNestApplication();
     await app.init();
   });
