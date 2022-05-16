@@ -69,7 +69,7 @@ export class TransactionResolver {
       amount: amount,
       balance: user.balance + amount,
     };
-    await this.userService.updateUser(userId, { balance: transaction.balance });
+    this.userService.updateUser(userId, { balance: transaction.balance });
     await this.transactionService.addTransaction(transaction);
     return {
       id: transaction.id,
@@ -111,12 +111,12 @@ export class TransactionResolver {
       id: v4(),
       userId: userId,
       info: ``,
-      type: 'Draw',
+      type: 'Debit',
       createdOn: new Date(Date.now()),
       amount: amount,
       balance: user.balance - amount,
     };
-    await this.userService.updateUser(userId, { balance: transaction.balance });
+    this.userService.updateUser(userId, { balance: transaction.balance });
     await this.transactionService.addTransaction(transaction);
     return {
       id: transaction.id,
@@ -168,7 +168,7 @@ export class TransactionResolver {
       id: transactionId,
       userId: sender.id,
       info: `Transfer to ${receiver.name}`,
-      type: 'Draw',
+      type: 'Debit',
       createdOn: creationDate,
       amount: amount,
       balance: sender.balance - amount,

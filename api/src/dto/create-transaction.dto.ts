@@ -17,7 +17,7 @@ export class CreateTransactionDto {
   /**
    * The type of transaction.
    */
-  type: 'Credit' | 'Draw';
+  type: 'Credit' | 'Debit';
 
   /**
    * The time the transaction was created.
