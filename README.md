@@ -2,10 +2,12 @@
 
 ![Yarn Version](https://img.shields.io/badge/yarn-v1.22.15-brightgreen "Yarn Version")
 ![MongoDB Version](https://img.shields.io/badge/MongoDB-v5.0.7-blue "MongoDB Version")
+<!-- [![Coverage Status](https://coveralls.io/repos/gitlab/B3zaleel/medici_bank/badge.svg?branch=main)](https://coveralls.io/gitlab/B3zaleel/medici_bank?branch=main) -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
 
-Medici bank API is a simple fictitious banking API that is built with NestJs, and uses MongoDB as a data storage system. The API uses a GraphQL querying system for system simplicity and to give you (the client) control over the data you want from the server.
+Medici bank is a simple fictitious banking API that is built with NestJs, and uses MongoDB as a data storage system. The API uses a GraphQL querying system for system simplicity and to give you (the client) control over the data you want from the server.
 
 ## Installation
 
