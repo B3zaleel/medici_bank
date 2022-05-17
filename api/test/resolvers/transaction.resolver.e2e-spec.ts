@@ -2,12 +2,14 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import * as mongoose from 'mongoose';
+import 'dotenv/config';
 import { AppModule } from '../../src/app.module';
 import { User, UserSchema } from '../../src/schemas/user.schema';
 import {
   Transaction,
   TransactionSchema,
 } from '../../src/schemas/transaction.schema';
+import { sign } from 'jsonwebtoken';
 
 describe('TransactionResolver (e2e)', () => {
   let app: INestApplication;
@@ -79,6 +81,12 @@ describe('TransactionResolver (e2e)', () => {
     const balance = signInBody['signIn']['user']['balance'];
     const token = signInBody['signIn']['bearerToken'];
     return { token, balance };
+  }
+
+  function signExpiredToken(userId: string) {
+    const iat = Date.now();
+    const exp = iat - 1000 * 60 * 60 * 24 * 30;
+    return sign({ userId, iat, exp }, process.env.JWT_SECRET);
   }
 
   it('Negative or 0 withdrawal amount fails', async () => {
@@ -458,7 +466,283 @@ describe('TransactionResolver (e2e)', () => {
     expect(subPageBody1['transactions'][0]['__typename']).toEqual('Transaction');
   });
 
-  // TODO: transfer tests
+  it('Transfer with an expired token fails', async () => {
+    const UserModel = mongoose.model(User.name, UserSchema);
+    const user = await UserModel.findOne({ phone: sampleUser.phone }).exec();
+    const oldToken = signExpiredToken(user.id);
+    const transferAmount = 300;
+    const transferQuery = `
+      mutation {
+        transfer(amount: ${transferAmount}, account: "09812455666") {
+          __typename
+          ... on Transaction {
+            id
+            type
+            createdOn
+            info
+            amount
+            balance
+          }
+          ... on ActionResult {
+            success
+            message
+          }
+        }
+      }
+    `;
+
+    const transferRes = await request(app.getHttpServer())
+      .post('/graphql')
+      .set('Authorization', `Bearer ${oldToken}`)
+      .send({ query: transferQuery })
+      .expect('Content-Type', /json/)
+      .expect(200);
+    const transferBody = JSON.parse(transferRes.text).data;
+    expect(transferBody).toBeDefined();
+    expect(transferBody['transfer']['__typename']).toEqual('ActionResult');
+    expect(transferBody['transfer']['success']).toEqual(false);
+    expect(transferBody['transfer']['message']).toEqual('Token has expired');
+  });
+
+  it('Transfer to a non-existent account fails', async () => {
+    const { token } = await getAuthToken(sampleUser);
+    const transferAmount = 300;
+    const transferQuery = `
+      mutation {
+        transfer(amount: ${transferAmount}, account: "09812455666") {
+          __typename
+          ... on Transaction {
+            id
+            type
+            createdOn
+            info
+            amount
+            balance
+          }
+          ... on ActionResult {
+            success
+            message
+          }
+        }
+      }
+    `;
+
+    const transferRes = await request(app.getHttpServer())
+      .post('/graphql')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ query: transferQuery })
+      .expect('Content-Type', /json/)
+      .expect(200);
+    const transferBody = JSON.parse(transferRes.text).data;
+    expect(transferBody).toBeDefined();
+    expect(transferBody['transfer']['__typename']).toEqual('ActionResult');
+    expect(transferBody['transfer']['success']).toEqual(false);
+    expect(transferBody['transfer']['message']).toEqual(
+      'Receiving account not found.',
+    );
+  });
+
+  it('Transfer of an invalid amount fails', async () => {
+    const { token } = await getAuthToken(sampleUser);
+    const transferAmount = -300;
+    const transferQuery = `
+      mutation {
+        transfer(amount: ${transferAmount}, account: "09812455666") {
+          __typename
+          ... on Transaction {
+            id
+            type
+            createdOn
+            info
+            amount
+            balance
+          }
+          ... on ActionResult {
+            success
+            message
+          }
+        }
+      }
+    `;
+
+    const transferRes = await request(app.getHttpServer())
+      .post('/graphql')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ query: transferQuery })
+      .expect('Content-Type', /json/)
+      .expect(200);
+    const transferBody = JSON.parse(transferRes.text).data;
+    expect(transferBody).toBeDefined();
+    expect(transferBody['transfer']['__typename']).toEqual('ActionResult');
+    expect(transferBody['transfer']['success']).toEqual(false);
+    expect(transferBody['transfer']['message']).toEqual(
+      'Amount must be greater than 0.',
+    );
+  });
+
+  it('Transfer of an unavailable amount fails', async () => {
+    const { token } = await getAuthToken(sampleUser);
+    const transferAmount = 300000000;
+    const transferQuery = `
+      mutation {
+        transfer(amount: ${transferAmount}, account: "09812455666") {
+          __typename
+          ... on Transaction {
+            id
+            type
+            createdOn
+            info
+            amount
+            balance
+          }
+          ... on ActionResult {
+            success
+            message
+          }
+        }
+      }
+    `;
+
+    const transferRes = await request(app.getHttpServer())
+      .post('/graphql')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ query: transferQuery })
+      .expect('Content-Type', /json/)
+      .expect(200);
+    const transferBody = JSON.parse(transferRes.text).data;
+    expect(transferBody).toBeDefined();
+    expect(transferBody['transfer']['__typename']).toEqual('ActionResult');
+    expect(transferBody['transfer']['success']).toEqual(false);
+    expect(transferBody['transfer']['message']).toEqual('Insufficient funds.');
+  });
+
+  it('Valid transfer amount succeeds', async () => {
+    const signUpQuery = `
+    mutation {
+      signUp(name: "${otherUser.name}", phone: "${otherUser.phone}", password: "${otherUser.password}") {
+        __typename
+        ... on AuthPayload {
+          bearerToken
+          user {
+            name
+            phone
+            balance
+          }
+        }
+        ... on ActionResult {
+          success
+          message
+        }
+      }
+    }
+    `;
+    const signUpRes = await request(app.getHttpServer())
+      .post('/graphql')
+      .send({ query: signUpQuery })
+      .expect('Content-Type', /json/)
+      .expect(200);
+    const signUpBody = JSON.parse(signUpRes.text).data;
+    expect(signUpBody).toBeDefined();
+    expect(signUpBody['signUp']['__typename']).toEqual('AuthPayload');
+    expect(signUpBody['signUp']['bearerToken']).toBeDefined();
+    const otherUserToken = signUpBody['signUp']['bearerToken'];
+    const { token } = await getAuthToken(sampleUser);
+    const depositAmount = 500;
+    const depositQuery = `
+      mutation {
+        deposit(amount: ${depositAmount}) {
+          __typename
+          ... on Transaction {
+            id
+            type
+            createdOn
+            info
+            amount
+            balance
+          }
+          ... on ActionResult {
+            success
+            message
+          }
+        }
+      }
+    `;
+
+    const depositRes = await request(app.getHttpServer())
+      .post('/graphql')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ query: depositQuery })
+      .expect('Content-Type', /json/)
+      .expect(200);
+    const depositBody = JSON.parse(depositRes.text).data;
+    expect(depositBody).toBeDefined();
+    expect(depositBody['deposit']['__typename']).toEqual('Transaction');
+    expect(depositBody['deposit']['type']).toEqual('Credit');
+    expect(depositBody['deposit']['amount']).toEqual(depositAmount);
+    const depositBalance = depositBody['deposit']['balance'];
+    const transferAmount = 300;
+    const transferQuery = `
+      mutation {
+        transfer(amount: ${transferAmount}, account: "${otherUser.phone}") {
+          __typename
+          ... on Transaction {
+            id
+            type
+            createdOn
+            info
+            amount
+            balance
+          }
+          ... on ActionResult {
+            success
+            message
+          }
+        }
+      }
+    `;
+
+    const transferRes = await request(app.getHttpServer())
+      .post('/graphql')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ query: transferQuery })
+      .expect('Content-Type', /json/)
+      .expect(200);
+    const transferBody = JSON.parse(transferRes.text).data;
+    expect(transferBody).toBeDefined();
+    expect(transferBody['transfer']['__typename']).toEqual('Transaction');
+    const balance = transferBody['transfer']['balance'];
+    expect(balance).toEqual(depositBalance - transferAmount);
+    const getUserQuery = `
+      query {
+        getUser {
+          __typename
+          ... on User {
+            name
+            phone
+            balance
+          }
+          ... on ActionResult {
+            success
+            message
+          }
+        }
+      }
+    `;
+
+    const res = await request(app.getHttpServer())
+      .post('/graphql')
+      .set('Authorization', `Bearer ${otherUserToken}`)
+      .send({ query: getUserQuery })
+      .expect('Content-Type', /json/)
+      .expect(200);
+    const body = JSON.parse(res.text).data;
+    expect(body).toBeDefined();
+    expect(body['getUser']['__typename']).toEqual('User');
+    expect(body['getUser']['name']).toEqual(otherUser.name);
+    expect(body['getUser']['phone']).toEqual(otherUser.phone);
+    expect(body['getUser']['balance']).toEqual(transferAmount);
+  });
+
   afterAll(() => {
     app.close();
   });
