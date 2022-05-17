@@ -2,9 +2,9 @@
   "name": "medici_bank",
   "version": "0.0.1",
   "description": "A simple banking application with NestJS, GraphQL, and MongoDB",
-  "author": "Bezaleel Olakunori",
+  "author": "Bezaleel Olakunori <bezaleeloci@gmail.com>",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -13,6 +13,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
+    "prod": "nest build && node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest --config ./jest-e2e.json",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
@@ -58,5 +59,26 @@
     "ts-node": "^10.0.0",
     "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/B3zaleel/medici_bank/-/tree/main/"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/B3zaleel/medici_bank/-/issues"
+  },
+  "homepage": "https://gitlab.com/B3zaleel/medici_bank/-/blob/main/README.md",
+  "keywords": [
+    "bank",
+    "graphql",
+    "nest.js",
+    "mongodb",
+    "vue",
+    "typescript",
+    "jest",
+    "api"
+  ],
+  "engines": {
+    "node": "14.x"
   }
 }
