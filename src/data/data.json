@@ -1,0 +1,24 @@
+{
+  "Users": [
+    {
+      "id": "",
+      "name": "Jalen Fox",
+      "phone": "03459506052",
+      "pwdHash": "",
+      "createdOn": "",
+      "updatedOn": "",
+      "balance": 2345
+    }
+  ],
+  "Transactions": [
+    {
+      "id": "",
+      "userId": "",
+      "info": "",
+      "type": "Credit",
+      "createdOn": "",
+      "amount": 23,
+      "balance": 2345
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testMatch": ["<rootDir>/test/**/*.e2e-spec.{ts,js}"],
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "<rootDir>/src/**/*.(t|j)s"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "statements": 75,
+      "branches": 75,
+      "functions": 75,
+      "lines": 75
+    }
+  },
+  "coverageDirectory": "./coverage",
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/src/dto/",
+    "<rootDir>/src/schemas/",
+    "<rootDir>/src/types/graphql.ts",
+    "<rootDir>/src/main.ts"
+  ]
+}

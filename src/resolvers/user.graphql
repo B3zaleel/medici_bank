@@ -1,0 +1,15 @@
+type User {
+    name: String!
+    phone: String!
+    balance: Int!
+}
+
+union UserResult = User | ActionResult
+
+type Query {
+  getUser: UserResult
+}
+
+type Mutation {
+  removeAccount(phone: String!, password: String!): ActionResult
+}

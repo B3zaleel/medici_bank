@@ -1,0 +1,25 @@
+type Transaction {
+  id: String!
+  type: TransactionType!,
+  createdOn: String!
+  info: String
+  amount: Int!
+  balance: Int!
+}
+
+enum TransactionType {
+  Credit
+  Debit
+}
+
+union TransactionResult = Transaction | ActionResult
+
+type Query {
+  transactions(count: Int!, before: String!): [TransactionResult!]
+}
+
+type Mutation {
+  deposit(amount: Int!): TransactionResult
+  withdraw(amount: Int!): TransactionResult
+  transfer(amount: Int!, account: String!): TransactionResult
+}

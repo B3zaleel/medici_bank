@@ -1,0 +1,16 @@
+type AuthPayload {
+    bearerToken: String!
+    user: User!
+}
+
+type ActionResult {
+    success: Boolean!
+    message: String!
+}
+
+union AuthResult = AuthPayload | ActionResult
+
+type Mutation {
+    signUp(name: String!, phone: String!, password: String!): AuthResult
+    signIn(phone: String!, password: String!): AuthResult
+}
