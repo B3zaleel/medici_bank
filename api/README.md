@@ -1,73 +1,53 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Medici Bank API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+![Yarn Version](https://img.shields.io/badge/yarn-v1.22.15-brightgreen "Yarn Version")
+![MongoDB Version](https://img.shields.io/badge/MongoDB-v5.0.7-blue "MongoDB Version")
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Medici bank API is a simple fictitious banking API that is built with NestJs, and uses MongoDB as a data storage system. The API uses a GraphQL querying system for system simplicity and to give you (the client) control over the data you want from the server.
 
 ## Installation
 
-```bash
-$ npm install
+```powershell
+$ yarn install
 ```
 
-## Running the app
+## Environment Variables
 
-```bash
+Create a `.env` file with the following information in the format `Name=Value`:
+
+| Name | Description |
+|:--|:--|
+| MONGO_DB_URI | The development/production URI for the MongoDB database. |
+| MONGO_DB_URI_TEST | The testing URI for the MongoDB database. |
+| JWT_SECRET | The secret key for signing JSON Web Tokens. |
+| ARGON2_SALT | A 32 byte salt for password hashing with [argon2](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjrr87Ngub3AhU0hv0HHSJ9AjYQFnoECB8QAQ&url=https%3A%2F%2Fargon2.online%2F&usg=AOvVaw04rPHdA-_i7g5aueRQV7x2). |
+
+## Running The API
+
+```powershell
+# start the database server
+$ sudo service mongodb start
+
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run start:dev
+$ yarn start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn start:prod
 ```
 
-## Test
+## Running The Test Suites
 
-```bash
-# unit tests
-$ npm run test
+```powershell
+# start the database server
+$ sudo service mongodb start
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# Run the test script
+$ yarn test
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+[![A preview of the Medici bank's API testing results](assets/Medici_Bank_API_Testing_Preview.png)](https://youtu.be/DOLGIQrma8g "A preview of the Medici bank's API testing results")
