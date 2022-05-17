@@ -189,9 +189,9 @@ export class TransactionResolver {
       balance: receiverTransaction.balance,
     };
     this.userService.updateUser(sender.id, senderUpdateDto);
+    await this.transactionService.addTransaction(senderTransaction);
     this.userService.updateUser(receiver.id, receiverUpdateDto);
-    this.transactionService.addTransaction(receiverTransaction);
-    this.transactionService.addTransaction(senderTransaction);
+    await this.transactionService.addTransaction(receiverTransaction);
     return {
       id: senderTransaction.id,
       type: senderTransaction.type,
