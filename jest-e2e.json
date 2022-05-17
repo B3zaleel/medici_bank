@@ -22,6 +22,7 @@
   "coveragePathIgnorePatterns": [
     "<rootDir>/src/dto/",
     "<rootDir>/src/schemas/",
+    "<rootDir>/web_client/",
     "<rootDir>/src/types/graphql.ts",
     "<rootDir>/src/main.ts"
   ]
