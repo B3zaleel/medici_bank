@@ -5,6 +5,7 @@ import * as mongoose from 'mongoose';
 import { AppModule } from '../../src/app.module';
 import { User, UserSchema } from '../../src/schemas/user.schema';
 
+jest.setTimeout(1000 * 20);
 describe('AuthResolver (e2e)', () => {
   let app: INestApplication;
   const sampleUser = {

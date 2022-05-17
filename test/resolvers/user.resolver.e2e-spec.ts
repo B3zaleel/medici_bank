@@ -7,6 +7,7 @@ import { AppModule } from '../../src/app.module';
 import { User, UserSchema } from '../../src/schemas/user.schema';
 import { sign } from 'jsonwebtoken';
 
+jest.setTimeout(1000 * 20);
 describe('UserResolver (e2e)', () => {
   let app: INestApplication;
   const sampleUser = {

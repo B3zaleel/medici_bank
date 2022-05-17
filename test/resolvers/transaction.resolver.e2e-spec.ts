@@ -11,6 +11,7 @@ import {
 } from '../../src/schemas/transaction.schema';
 import { sign } from 'jsonwebtoken';
 
+jest.setTimeout(1000 * 20);
 describe('TransactionResolver (e2e)', () => {
   let app: INestApplication;
   const sampleUser = {
