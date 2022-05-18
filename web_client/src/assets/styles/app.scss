@@ -73,27 +73,13 @@ header {
       color: globals.$color-purple-800;
     }
   }
-  .header-btn {
-    display: flex;
-    padding: 5px;
-    background: globals.$color-purple-100;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    transition: background 300ms ease-out;
-
-    &:hover {
-      background: globals.$color-purple-500;
-      color: globals.$color-purple-50;
-      fill: globals.$color-purple-50;
-    }
-  }
 }
 
 main {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 60px;
 }
 
 footer {
