@@ -31,6 +31,7 @@
     border: 2px solid globals.$color-purple-200;
     cursor: pointer;
     box-shadow: 0 0 1.0px 1.0px adjust-color($color: globals.$color-bluegray-300, $alpha: -0.5);
+    transition: background 400ms ease-in, color 300ms linear 350ms, fill 300ms linear 350ms, box-shadow 200ms ease-out;
 
     > div.icon {
       padding: 10px;
@@ -60,8 +61,8 @@
     }
 
     &:hover {
-      fill: white;
-      color: white;
+      fill: globals.$color-purple-50;
+      color: globals.$color-purple-50;
       background: globals.$color-purple-600;
       box-shadow: 0 0 2.5px 2.5px adjust-color($color: globals.$color-bluegray-300, $alpha: -0.5);
     }
