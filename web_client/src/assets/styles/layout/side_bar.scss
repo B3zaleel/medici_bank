@@ -1,0 +1,78 @@
+@use '@/assets/styles/globals';
+
+.side-bar {
+  position: fixed;
+  display: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: adjust-color($color: globals.$color-bluegray-200, $alpha: -0.4);
+
+  > div {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    background: white;
+    height: 100%;
+    width: fit-content;
+    padding: 0 10px;
+
+    > div:nth-child(1) {
+      padding: 10px 0;
+    }
+  }
+
+  .bar-btn {
+    display: flex;
+    padding: 5px;
+    background: globals.$color-purple-100;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 300ms ease-out;
+
+    &:hover {
+      background: globals.$color-purple-500;
+      color: globals.$color-purple-50;
+      fill: globals.$color-purple-50;
+    }
+  }
+
+  .page_link {
+    display: grid;
+    grid-auto-flow: column;
+    padding: 8px 15px;
+    margin: 5px 0;
+    justify-content: left;
+    align-items: center;
+    color: black;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 250ms ease-in, color 250ms ease-in, fill 250ms ease-in;
+
+    svg {
+      width: 35px;
+      height: 35px;
+    }
+
+    &:hover {
+      background: globals.$color-purple-200;
+      color: white;
+      fill: white;
+    }
+
+    &.router-link-exact-active {
+      background: globals.$color-purple-500;
+      color: white;
+      fill: white;
+    }
+  }
+
+  &.visible {
+    display: block;
+  }
+}
