@@ -44,22 +44,12 @@ export default class SignIn extends Vue {
               this.store.commit('signIn', res.bearerToken);
               this.$router.push('/');
             } else {
-              this.$toast.add({
-                severity: 'error',
-                summary: 'Success Message',
-                detail: 'Order submitted',
-                life: 3000,
-              });
+              alert(res.message);
             }
             this.isSigningIn = false;
           })
           .catch((err) => {
-            this.$toast.add({
-              severity: 'error',
-              summary: String(err),
-              detail: 'Order submitted',
-              life: 3000,
-            });
+            alert(err);
           });
       }
     }

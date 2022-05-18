@@ -50,12 +50,7 @@ export default class SignUp extends Vue {
               this.store.commit('signIn', res.bearerToken);
               this.$router.push('/');
             } else {
-              this.$toast.add({
-                severity: 'success',
-                summary: 'Success Message',
-                detail: 'Order submitted',
-                life: 3000,
-              });
+              alert(res.message);
             }
           });
       }

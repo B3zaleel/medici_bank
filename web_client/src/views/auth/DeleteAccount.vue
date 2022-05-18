@@ -47,22 +47,12 @@ export default class DeleteAccount extends Vue {
               this.store.commit('signOut');
               this.$router.push('/');
             } else {
-              this.$toast.add({
-                severity: 'error',
-                summary: 'Success Message',
-                detail: 'Order submitted',
-                life: 3000,
-              });
+              alert(res.message);
             }
             this.isDeletingAccount = false;
           })
           .catch((err) => {
-            this.$toast.add({
-              severity: 'error',
-              summary: String(err),
-              detail: 'Order submitted',
-              life: 3000,
-            });
+            alert(err);
           });
       }
     }
