@@ -1,24 +1,24 @@
 {
   "Users": [
     {
-      "id": "",
       "name": "Jalen Fox",
       "phone": "03459506052",
-      "pwdHash": "",
-      "createdOn": "",
-      "updatedOn": "",
-      "balance": 2345
-    }
-  ],
-  "Transactions": [
+      "password": "fru1tyl00p5"
+    },
     {
-      "id": "",
-      "userId": "",
-      "info": "",
-      "type": "Credit",
-      "createdOn": "",
-      "amount": 23,
-      "balance": 2345
+      "name": "Boa Hancock",
+      "phone": "08031578644",
+      "password": "fr0573dfl4k35"
+    },
+    {
+      "name": "Anya Yusuf",
+      "phone": "07845677890",
+      "password": "ch33r105"
+    },
+    {
+      "name": "Nico Robin",
+      "phone": "09856789237",
+      "password": "r1c3kr159135"
     }
   ]
 }
