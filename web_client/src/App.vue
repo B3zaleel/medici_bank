@@ -108,7 +108,9 @@ export default class App extends Vue {
   }
 
   openSideBar(): void {
-    this.isSideBarOpen = true;
+    if (this.isAuthenticated()) {
+      this.isSideBarOpen = true;
+    }
   }
 
   closeSideBar(): void {
