@@ -1,0 +1,42 @@
+@use '@/assets/styles/globals';
+
+.transaction-card {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 2px solid globals.$color-purple-300;
+  box-shadow: 1.5px 1.5px 1.5px 1.5px adjust-color($color: globals.$color-purple-300, $alpha: -0.4);
+  transition: background 300ms ease-in, box-shadow 200ms ease-out;
+  cursor: pointer;
+
+  .info-line {
+    > em {
+      margin-left: 5px;
+    }
+  }
+
+  &:hover {
+    background: globals.$color-purple-300;
+    box-shadow: 0px 0px 1.5px 1.5px adjust-color($color: globals.$color-purple-300, $alpha: -0.4);
+  }
+
+  &:active {
+    background: globals.$color-purple-500;
+    box-shadow: 0px 0px 1.5px 1.5px adjust-color($color: globals.$color-purple-300, $alpha: -0.4);
+  }
+}
+
+.no-transactions-panel {
+  text-align: center;
+}
+
+.pager_panel {
+  display: none;
+  padding: 20px;
+}
+
+.pager_panel.visible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
