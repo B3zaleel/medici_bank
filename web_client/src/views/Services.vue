@@ -174,7 +174,10 @@ export default class Services extends Vue {
     }
     this.transactionAPIReq
       .deposit(amount)
-      .then(() => {
+      .then((res) => {
+        if (res.__typename === 'ActionResult') {
+          alert(res.message);
+        }
         this.isServiceRunning = false;
         this.closeDialog();
       })
@@ -194,7 +197,10 @@ export default class Services extends Vue {
     }
     this.transactionAPIReq
       .withdraw(amount)
-      .then(() => {
+      .then((res) => {
+        if (res.__typename === 'ActionResult') {
+          alert(res.message);
+        }
         this.isServiceRunning = false;
         this.closeDialog();
       })
@@ -214,7 +220,10 @@ export default class Services extends Vue {
     }
     this.transactionAPIReq
       .transfer(amount, this.servicesDataStore.transfer.transferAccount)
-      .then(() => {
+      .then((res) => {
+        if (res.__typename === 'ActionResult') {
+          alert(res.message);
+        }
         this.isServiceRunning = false;
         this.closeDialog();
       })
