@@ -1,0 +1,13 @@
+.auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form {
+  display: grid;
+  grid-auto-flow: row;
+  flex-flow: column;
+  row-gap: 10px;
+  justify-content: center;
+}
