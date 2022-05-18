@@ -56,7 +56,7 @@ import DotsHexagon from '@/assets/icons/DotsHexagon.vue';
 import Menu from '@/assets/icons/Menu.vue';
 import ContextMenu from '@/views/layout/ContextMenu.vue';
 import SideBar from '@/views/layout/SideBar.vue';
-import { Position, PointerClickEvent } from '@/modules/types/interfaces';
+import { Position } from '@/modules/types/interfaces';
 
 @Options({
   components: {
@@ -80,24 +80,8 @@ export default class App extends Vue {
     return this.store.state.user.isAuthenticated;
   }
 
-  openMoreMenu(ev: PointerClickEvent): void {
-    let button = null;
-    const el = ev.target;
-    let rightPos = ev.clientX;
+  openMoreMenu(): void {
     const header = document.getElementById('site-header');
-    if (el.nodeName === 'SPAN') {
-      button = el.parentElement;
-    } else if (el.nodeName === 'svg' || el.nodeName === 'B') {
-      button = el.parentElement?.parentElement;
-    } else if (el.nodeName === 'path') {
-      button = el.parentElement?.parentElement?.parentElement;
-    } else {
-      button = el;
-    }
-    if (button) {
-      rightPos = button.clientWidth;
-    }
-    console.log(header?.clientHeight);
     this.moreMenuPos.right = `${15}px`;
     this.moreMenuPos.top = `${(header?.clientHeight || 0) - 5}px`;
     this.isMoreMenuOpen = true;
@@ -118,7 +102,7 @@ export default class App extends Vue {
   }
 
   signOut(): void {
-    this.store.state.commit('signOut');
+    this.store.commit('signOut');
   }
 }
 </script>
