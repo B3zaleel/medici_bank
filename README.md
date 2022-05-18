@@ -71,3 +71,22 @@ $ yarn test
 Click on the link below to watch the results of the testing process:
 
 [![A preview of the Medici bank's API testing results](assets/Medici_Bank_API_Testing_Preview.png)](https://youtu.be/DOLGIQrma8g "A preview of the Medici bank's API testing results")
+
+## Sample User Accounts
+
+The following accounts can be used to test the API by signing in through the site [here](https://medici-bank.netlify.app).
+
+```json
+[
+  {
+    "name": "Jalen Fox",
+    "phone": "03459506052",
+    "password": "fru1tyl00p5"
+  },
+  {
+    "name": "Boa Hancock",
+    "phone": "08031578644",
+    "password": "fr0573dfl4k35"
+  }
+]
+```
