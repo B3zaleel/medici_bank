@@ -1,0 +1,116 @@
+@use '@/assets/styles/globals';
+@use '@/assets/styles/buttons';
+@use '@/assets/styles/textbox';
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overscroll-behavior: auto none;
+}
+
+* {
+  font-family: globals.$Sans-Serif-Font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: globals.$Serif-Font;
+  margin: 0;
+}
+
+#app {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // text-align: center;
+  color: #2c3e50;
+  color: var(--primary-color);
+
+  min-height: 100%;
+
+  > .content-container {
+    display: contents;
+    min-height: 100%;
+  }
+}
+
+header {
+  display: grid;
+  position: fixed;
+  width: calc(100% - 2 * 10px);
+  grid-template-columns: 1fr auto;
+  padding: 10px;
+  background: globals.$color-purple-50;
+
+  div:nth-child(1) {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: left;
+  }
+
+  div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-link {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bolder;
+    color: globals.$color-purple-600;
+
+    &:active {
+      color: globals.$color-purple-800;
+    }
+  }
+  .header-btn {
+    display: flex;
+    padding: 5px;
+    background: globals.$color-purple-100;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: background 300ms ease-out;
+
+    &:hover {
+      background: globals.$color-purple-500;
+      color: globals.$color-purple-50;
+      fill: globals.$color-purple-50;
+    }
+  }
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  display: grid;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    text-align: center;
+  }
+}
+
+a.text {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: 2px solid underline globals.$primary-color-light;
+  }
+}
