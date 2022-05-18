@@ -15,7 +15,7 @@
         v-model="phone"
       />
       <input
-        type="text"
+        type="password"
         class="mb-inputtext-lg"
         placeholder="Password"
         v-model="password"
