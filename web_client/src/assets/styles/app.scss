@@ -79,7 +79,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 60px;
+  padding: 60px clamp(20px, 20%, 150px) 0 clamp(20px, 20%, 150px);
 }
 
 footer {
@@ -95,8 +95,12 @@ footer {
 
 a.text {
   text-decoration: none;
+  color: globals.$color-purple-300;
+  transition: color 300ms ease-in;
 
   &:hover {
+    color: globals.$color-purple-800;
+    font-weight: 500;
     text-decoration: 2px solid underline globals.$primary-color-light;
   }
 }
