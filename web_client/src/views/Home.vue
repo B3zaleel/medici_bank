@@ -43,8 +43,8 @@ export default class Home extends Vue {
     this.store.state.API_URL,
     this.store.state.user.authToken,
   );
-  name = 'Bezaleel Olakunori';
-  balance = 254500;
+  name = '';
+  balance = 0;
 
   isAuthenticated() {
     return this.store.state.user.isAuthenticated;
