@@ -19,7 +19,7 @@ export default class AuthenticationAPIReq {
   async signIn(phone: string, password: string): Promise<AuthResult> {
     const query = `
     mutation {
-      signIn(phone: '${phone}', password: '${password}') {
+      signIn(phone: "${phone}", password: "${password}") {
         __typename
         ... on AuthPayload {
           bearerToken
@@ -75,7 +75,7 @@ export default class AuthenticationAPIReq {
         result = {
           __typename: 'ActionResult',
           success: false,
-          message: body.errors,
+          message: body.errors[0].message,
         } as ActionResult;
       }
     }
@@ -95,7 +95,7 @@ export default class AuthenticationAPIReq {
   ): Promise<AuthResult> {
     const query = `
     mutation {
-      signUp(name: '${name}', phone: '${phone}', password: '${password}') {
+      signUp(name: "${name}", phone: "${phone}", password: "${password}") {
         __typename
         ... on AuthPayload {
           bearerToken
@@ -151,7 +151,7 @@ export default class AuthenticationAPIReq {
         result = {
           __typename: 'ActionResult',
           success: false,
-          message: body.errors,
+          message: body.errors[0].message,
         } as ActionResult;
       }
     }

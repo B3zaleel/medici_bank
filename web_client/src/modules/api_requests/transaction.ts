@@ -76,7 +76,7 @@ export default class TransactionAPIReq {
         result = {
           __typename: 'ActionResult',
           success: false,
-          message: body.errors,
+          message: body.errors[0].message,
         } as ActionResult;
       }
     }
@@ -146,7 +146,7 @@ export default class TransactionAPIReq {
         result = {
           __typename: 'ActionResult',
           success: false,
-          message: body.errors,
+          message: body.errors[0].message,
         } as ActionResult;
       }
     }
@@ -161,7 +161,7 @@ export default class TransactionAPIReq {
   async transfer(amount: number, account: string): Promise<TransactionResult> {
     const query = `
     mutation {
-      transfer(amount: ${amount}, account: '${account}') {
+      transfer(amount: ${amount}, account: "${account}") {
         __typename
         ... on Transaction {
           id
@@ -217,7 +217,7 @@ export default class TransactionAPIReq {
         result = {
           __typename: 'ActionResult',
           success: false,
-          message: body.errors,
+          message: body.errors[0].message,
         } as ActionResult;
       }
     }
@@ -232,7 +232,7 @@ export default class TransactionAPIReq {
   async getTransactions(count = 12, before = ''): Promise<TransactionResult[]> {
     const query = `
     query {
-      transactions(count: ${count}, before: '${before}') {
+      transactions(count: ${count}, before: "${before}") {
         __typename
         ... on Transaction {
           id
@@ -286,7 +286,7 @@ export default class TransactionAPIReq {
         result.push({
           __typename: 'ActionResult',
           success: false,
-          message: body.errors,
+          message: body.errors[0].message,
         } as ActionResult);
       }
     }

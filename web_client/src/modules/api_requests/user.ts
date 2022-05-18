@@ -70,7 +70,7 @@ export default class UserAPIReq {
         result = {
           __typename: 'ActionResult',
           success: false,
-          message: body.errors,
+          message: body.errors[0].message,
         } as ActionResult;
       }
     }
@@ -85,7 +85,7 @@ export default class UserAPIReq {
   async deleteUser(phone: string, password: string): Promise<ActionResult> {
     const query = `
     mutation {
-      removeAccount(phone: '${phone}', password: '${password}') {
+      removeAccount(phone: "${phone}", password: "${password}") {
         __typename
         success
         message
@@ -119,7 +119,7 @@ export default class UserAPIReq {
         result = {
           __typename: 'ActionResult',
           success: false,
-          message: body.errors,
+          message: body.errors[0].message,
         } as ActionResult;
       }
     }
