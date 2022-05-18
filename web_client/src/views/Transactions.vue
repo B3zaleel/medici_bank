@@ -137,6 +137,7 @@ export default class Transactions extends Vue {
             this.lastTransactionId = transaction.id;
           }
         }
+        this.transactionBatches.push(newTransactionBatch);
         if (newTransactionBatch.length < this.batchCount) {
           this.isTransactionsFinished = true;
         }
