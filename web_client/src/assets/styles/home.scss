@@ -1,0 +1,53 @@
+@use '@/assets/styles/globals';
+
+.guest-panel,
+.user-panel {
+  display: none;
+}
+
+.guest-panel.visible {
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 30px;
+
+  .cta-panel {
+    display: grid;
+    row-gap: 10px;
+    grid-auto-flow: row;
+    justify-items: center;
+  }
+}
+
+.user-panel.visible {
+  display: grid;
+  grid-auto-flow: row;
+  justify-content: center;
+
+  .profile-info {
+    display: grid;
+    grid-auto-flow: row;
+    justify-items: center;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid adjust-color($color: globals.$color-purple-200, $alpha: 1.0);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 200ms ease-in, box-shadow 200ms ease-out;
+    user-select: none;
+
+    > svg {
+      width: 100px;
+      height: 100px;
+      fill: globals.$color-purple-400;
+    }
+
+    &:hover {
+      background: globals.$color-purple-50;
+    }
+
+    &:active {
+      background: globals.$color-purple-100;
+      box-shadow: 0 0 1.5px 1.5px adjust-color($color: globals.$color-purple-300, $alpha: -0.4);
+    }
+  }
+}
