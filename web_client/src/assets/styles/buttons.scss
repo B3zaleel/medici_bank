@@ -2,13 +2,16 @@
 
 .mb-button-rounded {
   font-size: 1.2rem;
+  font-weight: bold;
   border-radius: 20px;
+  padding: 5px 10px;
   background: globals.$color-purple-500;
   border: 2px solid globals.$color-purple-500;
   box-shadow: 0 0 1.5px 1.5px adjust-color($color: globals.$color-bluegray-200, $alpha: -0.2);
   color: white;
   cursor: pointer;
   transition: background 500ms linear 0ms, box-shadow 200ms linear 0ms;
+  text-decoration: none;
 
   &:hover {
     background: globals.$color-purple-400;
