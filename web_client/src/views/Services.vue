@@ -107,7 +107,6 @@ interface ServiceInfo {
   name: string;
   icon: string;
   dialogTitle: string;
-  provider: () => void;
 }
 
 @Options({
@@ -132,11 +131,9 @@ export default class Services extends Vue {
     name: '',
     icon: '',
     dialogTitle: '',
-    provider: () => ({}),
   };
   isServiceRunning = false;
   isDialogOpen = false;
-  numberPattern = /^\d+$/g;
   servicesDataStore = {
     deposit: {
       depositAmount: '0',
@@ -154,71 +151,76 @@ export default class Services extends Vue {
       name: 'Deposit',
       icon: 'BankPlus',
       dialogTitle: 'Deposit Funds',
-      provider: this.depositService,
     },
     {
       name: 'Withdraw',
       icon: 'BankMinus',
       dialogTitle: 'Withdraw Funds',
-      provider: this.withdrawService,
     },
     {
       name: 'Transfer',
       icon: 'BankTransfer',
       dialogTitle: 'Transfer Funds',
-      provider: this.transferService,
     },
   ];
 
   depositService(): void {
     this.isServiceRunning = true;
     let amount = 0;
-    if (this.numberPattern.test(this.servicesDataStore.deposit.depositAmount)) {
+    const numberPattern = /^\d+$/g;
+    if (numberPattern.test(this.servicesDataStore.deposit.depositAmount)) {
       amount = Number.parseInt(this.servicesDataStore.deposit.depositAmount);
+      amount *= 100;
     }
     this.transactionAPIReq
       .deposit(amount)
       .then(() => {
         this.isServiceRunning = false;
+        this.closeDialog();
       })
       .catch(() => {
         this.isServiceRunning = false;
+        this.closeDialog();
       });
   }
 
   withdrawService(): void {
     this.isServiceRunning = true;
     let amount = 0;
-    if (
-      this.numberPattern.test(this.servicesDataStore.withdraw.withdrawAmount)
-    ) {
+    const numberPattern = /^\d+$/g;
+    if (numberPattern.test(this.servicesDataStore.withdraw.withdrawAmount)) {
       amount = Number.parseInt(this.servicesDataStore.withdraw.withdrawAmount);
+      amount *= 100;
     }
     this.transactionAPIReq
       .withdraw(amount)
       .then(() => {
         this.isServiceRunning = false;
+        this.closeDialog();
       })
       .catch(() => {
         this.isServiceRunning = false;
+        this.closeDialog();
       });
   }
 
   transferService(): void {
     this.isServiceRunning = true;
     let amount = 0;
-    if (
-      this.numberPattern.test(this.servicesDataStore.transfer.transferAmount)
-    ) {
+    const numberPattern = /^\d+$/g;
+    if (numberPattern.test(this.servicesDataStore.transfer.transferAmount)) {
       amount = Number.parseInt(this.servicesDataStore.transfer.transferAmount);
+      amount *= 100;
     }
     this.transactionAPIReq
       .transfer(amount, this.servicesDataStore.transfer.transferAccount)
       .then(() => {
         this.isServiceRunning = false;
+        this.closeDialog();
       })
       .catch(() => {
         this.isServiceRunning = false;
+        this.closeDialog();
       });
   }
 
@@ -242,7 +244,15 @@ export default class Services extends Vue {
       // TODO: send a busy notification.
       return;
     }
-    this.activeService.provider();
+    if (this.activeService.name === 'Deposit') {
+      this.depositService();
+    }
+    if (this.activeService.name === 'Withdraw') {
+      this.withdrawService();
+    }
+    if (this.activeService.name === 'Transfer') {
+      this.transferService();
+    }
   }
 
   closeDialog(): void {
