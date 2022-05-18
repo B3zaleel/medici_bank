@@ -1,24 +1,29 @@
-# web_client
+# Medici Bank Web Client
 
-## Project setup
+This is a simple user interface for the Medici Bank API.
+
+Visit the site [here](https://medici-bank.netlify.app/).
+
+## Project Setup
+
 ```
 yarn install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 yarn serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 yarn build
 ```
 
 ### Lints and fixes files
+
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
