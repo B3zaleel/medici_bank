@@ -121,8 +121,7 @@ export default class Transactions extends Vue {
       ordinal = 'rd';
     }
     const time = `${date.toLocaleTimeString()}`;
-    const output = `${month} ${monthDay}${ordinal} ${date.getFullYear()} ${time}`;
-    return output;
+    return `${month} ${monthDay}${ordinal} ${date.getFullYear()} ${time}`;
   }
 
   fetchTransactions(): void {
