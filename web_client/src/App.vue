@@ -103,6 +103,7 @@ export default class App extends Vue {
 
   signOut(): void {
     this.store.commit('signOut');
+    this.$router.push('/');
   }
 }
 </script>
