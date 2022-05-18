@@ -1,13 +1,13 @@
 <template>
   <header id="site-header">
     <div>
-      <button @click.prevent="openSideBar" class="header-btn">
+      <button @click.prevent="openSideBar" class="icon-btn">
         <Menu />
       </button>
       <router-link to="/" class="home-link">Medici Bank</router-link>
     </div>
     <div>
-      <button @click.prevent="openMoreMenu" class="header-btn">
+      <button @click.prevent="openMoreMenu" class="icon-btn">
         <DotsHexagon />
       </button>
     </div>
