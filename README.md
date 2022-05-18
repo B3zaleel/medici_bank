@@ -47,15 +47,6 @@ $ yarn start:dev
 $ yarn start:prod
 ```
 
-<!-- ## Seeding The Database With Data
-
-[data.json](src/data/data.json) contains some data that can be used to fill the database with data. Run [seeder.go](src/data/seeder.go) to seed the database.
-
-```powershell
-# Run the database seeder
-$ go run src/data/seeder.go
-``` -->
-
 ## Running The Test Suites
 
 To run the end to end (E2E) test suites, you would need access to a MongoDb database for testing. After you have gotten a MongoDB server, store the database connection URI in the `MONGO_DB_URI_TEST` environment variable.
