@@ -10,7 +10,6 @@ export default createStore({
       authToken: window.localStorage.getItem('user.authToken') || '',
     },
   },
-  getters: {},
   mutations: {
     signIn(state, token: string): void {
       state.user.authToken = token;
@@ -18,13 +17,11 @@ export default createStore({
       window.localStorage.setItem('user.authToken', token);
       window.localStorage.setItem('user.isAuthenticated', 'true');
     },
-    signOut(state) {
+    signOut(state): void {
       state.user.authToken = '';
       state.user.isAuthenticated = false;
       window.localStorage.setItem('user.authToken', '');
       window.localStorage.setItem('user.isAuthenticated', 'false');
     },
   },
-  actions: {},
-  modules: {},
 });
