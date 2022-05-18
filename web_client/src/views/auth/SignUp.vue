@@ -48,6 +48,7 @@ export default class SignUp extends Vue {
           .then((res) => {
             if (res.__typename === 'AuthPayload') {
               this.store.commit('signIn', res.bearerToken);
+              this.$router.push('/');
             } else {
               this.$toast.add({
                 severity: 'success',
