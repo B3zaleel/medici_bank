@@ -1,0 +1,99 @@
+@use '@/assets/styles/globals';
+
+.services {
+  display: flex;
+  min-height: 100%;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  > h2 {
+    margin: 10px 20px;
+  }
+
+  .services-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .service-card {
+    display: inline-flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: stretch;
+    padding: 0;
+    margin: 10px;
+    color: black;
+    background: globals.$color-purple-50;
+    border-radius: 14px;
+    border: 2px solid globals.$color-purple-200;
+    cursor: pointer;
+    box-shadow: 0 0 1.0px 1.0px adjust-color($color: globals.$color-bluegray-300, $alpha: -0.5);
+
+    > div.icon {
+      padding: 10px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+
+      > svg {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    > div.title {
+      display: flex;
+      padding: 5px;
+      width: calc(100% - 2 * 5px);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom-left-radius: 14px;
+      border-bottom-right-radius: 14px;
+      border-top: 2px solid globals.$color-purple-200;
+
+      > strong {
+        margin-right: 10px;
+      }
+    }
+
+    &:hover {
+      fill: white;
+      color: white;
+      background: globals.$color-purple-600;
+      box-shadow: 0 0 2.5px 2.5px adjust-color($color: globals.$color-bluegray-300, $alpha: -0.5);
+    }
+
+    &:active {
+      background: globals.$color-purple-800;
+    }
+  }
+}
+
+.money-panel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 10px;
+
+  > .mb-inputtext-lg {
+    width: fit-content;
+    box-sizing: content-box;
+    min-width: 20px;
+  }
+}
+
+.input-panel {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > .mb-inputtext-lg {
+    width: 100%;
+    box-sizing: content-box;
+    min-width: 20px;
+  }
+}
