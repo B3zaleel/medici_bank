@@ -1,7 +1,9 @@
 {
-  "name": "web_client",
-  "version": "0.1.0",
+  "name": "medici_bank",
+  "description": "A simple banking application UI made with Vue3 + TypeScript",
+  "author": "Bezaleel Olakunori <bezaleeloci@gmail.com>",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -12,6 +14,7 @@
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
+    "vue-property-decorator": "^9.1.2",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
@@ -34,5 +37,28 @@
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
     "typescript": "~4.5.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/B3zaleel/medici_bank/-/tree/main/"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/B3zaleel/medici_bank/-/issues"
+  },
+  "homepage": "https://gitlab.com/B3zaleel/medici_bank/-/blob/main/README.md",
+  "keywords": [
+    "bank",
+    "graphql",
+    "nest.js",
+    "mongodb",
+    "vue",
+    "typescript",
+    "jest",
+    "api"
+  ],
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x",
+    "yarn": "1.x"
   }
 }
