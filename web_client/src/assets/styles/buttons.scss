@@ -1,0 +1,35 @@
+@use '@/assets/styles/globals';
+
+.mb-button-rounded {
+  font-size: 1.2rem;
+  border-radius: 20px;
+  background: globals.$color-purple-500;
+  border: 2px solid globals.$color-purple-500;
+  box-shadow: 0 0 1.5px 1.5px adjust-color($color: globals.$color-bluegray-200, $alpha: -0.2);
+  color: white;
+  cursor: pointer;
+  transition: background 500ms linear 0ms, box-shadow 200ms linear 0ms;
+
+  &:hover {
+    background: globals.$color-purple-400;
+    border: 2px solid globals.$color-purple-400;
+    box-shadow: 0 0 2px 2px adjust-color($color: globals.$color-bluegray-400, $alpha: -0.5);
+  }
+}
+
+.icon-btn {
+  display: flex;
+  padding: 5px;
+  background: globals.$color-purple-100;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background 300ms ease-out, color 300ms ease-in, fill 300ms ease-in, box-shadow 300ms ease-out;
+
+  &:hover {
+    background: globals.$color-purple-500;
+    color: globals.$color-purple-50;
+    fill: globals.$color-purple-50;
+    box-shadow: 0 0 2px 2px adjust-color($color: globals.$color-bluegray-400, $alpha: -0.5);
+  }
+}
