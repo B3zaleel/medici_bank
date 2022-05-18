@@ -61,19 +61,19 @@ const routes: Array<RouteRecordRaw> = [
     path: '/about',
     name: 'about',
     meta: {
-      title: 'Home',
+      title: 'About',
       requiresAuth: false,
     },
-    component: () => import('../views/AboutView.vue'),
+    component: () => import('../views/About.vue'),
   },
   {
-    path: '*',
-    name: 'error404',
+    path: '/:pathMatch(.*)*',
+    name: 'error_404',
     meta: {
       title: 'Error 404',
       requiresAuth: false,
     },
-    component: () => import('../views/ErrorView.vue'),
+    component: () => import('../views/Error.vue'),
   },
 ];
 
@@ -82,17 +82,17 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, _, next) => {
-//   const isAuthenticated =
-//     window.localStorage.getItem('user.isAuthenticated') === 'true';
-//   if (!isAuthenticated && to.meta?.requiresAuth) {
-//     next('/sign-in');
-//   } else if (isAuthenticated && to.meta?.disableOnSignedIn) {
-//     next('/');
-//   } else {
-//     next();
-//   }
-// });
+router.beforeEach((to, _, next) => {
+  const isAuthenticated =
+    window.localStorage.getItem('user.isAuthenticated') === 'true';
+  if (!isAuthenticated && to.meta?.requiresAuth) {
+    next('/sign-in');
+  } else if (isAuthenticated && to.meta?.disableOnSignedIn) {
+    next('/');
+  } else {
+    next();
+  }
+});
 
 router.afterEach((to) => {
   document.title = to.meta?.title ? `${to.meta.title} - Medici` : 'Medici';
