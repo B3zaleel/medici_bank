@@ -1,0 +1,49 @@
+@use '@/assets/styles/globals';
+
+.menu-container {
+  position: relative;
+}
+
+.menu.visible {
+  display: block;
+}
+
+.menu {
+  display: none;
+  padding: 5px 0;
+  border-radius: 4px;
+  border: 1px solid gainsboro;
+  background: ghostwhite;
+  z-index: 700;
+  box-shadow: 0 0 2px 1.5px adjust-color($color: globals.$color-bluegray-600, $alpha: -0.5);
+
+  > div {
+    display: flex;
+    flex-flow: column;
+
+    .menu-item {
+      display: flex;
+      box-sizing: border-box;
+      padding: 5px;
+      width: calc(100%);
+      color: black;
+      background: none;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      white-space: nowrap;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 150ms ease-in-out;
+
+      &:hover {
+        color: white;
+        background: globals.$color-purple-400;
+
+        &.danger {
+          background: globals.$danger-color-light;
+        }
+      }
+    }
+  }
+}
