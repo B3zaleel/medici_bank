@@ -1,0 +1,105 @@
+@use '@/assets/styles/globals';
+
+.modal-view {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  z-index: 600;
+  background: adjust-color($color: globals.$color-purple-100, $alpha: -0.4);
+  backdrop-filter: blur(1.5px);
+
+  > div {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    width: clamp(225px, 40%, 450px);
+    max-height: calc(100% - 2 * 10px);
+    margin: 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 2px globals.$shadow-color;
+
+    > .header {
+      display: grid;
+      grid-template-columns: calc(100% - 60px) 60px;
+      box-shadow: 0px 0px 1px 2px globals.$shadow-color;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      cursor: context-menu;
+
+      b {
+        font-size: 14pt;
+      }
+
+      > div:nth-child(2) {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      > div:nth-child(1) {
+        display: flex;
+        align-items: center;
+        justify-items: flex-start;
+        padding: 5px 10px;
+      }
+
+      > div:nth-child(2) {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        padding: 5px 10px;
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
+
+    > .content {
+      padding: 10px;
+      overflow: auto;
+    }
+
+    > .footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 5px;
+      box-shadow: 0px 0px 1px 2px globals.$shadow-color;
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
+
+      > .pane-container {
+        > .pane {
+          display: flex;
+
+          &.hidden {
+            display: none;
+          }
+
+          .center {
+            justify-content: center;
+          }
+
+          .right {
+            justify-content: flex-end;
+          }
+        }
+      }
+
+      &.hidden {
+        display: none;
+      }
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
