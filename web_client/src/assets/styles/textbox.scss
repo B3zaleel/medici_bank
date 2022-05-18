@@ -6,6 +6,8 @@
   border-radius: 5px;
   border: 2px solid gainsboro;
   min-width: 20rem;
+  outline: none;
+  transition: border 200ms ease-out;
 
   &:focus {
     background: white;
